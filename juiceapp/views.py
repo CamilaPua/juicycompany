@@ -1,3 +1,6 @@
 from django.shortcuts import render
+from .models import Sale
 
-# Create your views here.
+def purchase(request, user_id):
+    context={}
+    return render(request, 'juiceapp/purchase.html',context)
