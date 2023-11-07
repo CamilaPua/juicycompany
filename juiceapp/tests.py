@@ -12,4 +12,4 @@ class PurchaseViewTest(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'User ID: {}'.format(self.user.id))
-        self.assertContains(response, 'User name: testuser') 
+        self.assertContains(response, 'User name: testuser')
