@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from .models import User
 
 class MyModelTestCase(TestCase):
@@ -8,3 +8,11 @@ class MyModelTestCase(TestCase):
         print(f"User ID: {user.id}")
         self.assertEqual(user.username, "testuser")
         self.assertGreater(user.id, 0)
+
+    def test_purchase_view(self):
+        client = Client()
+        client.login(username="testuser", password="password123")
+
+        response = client.get('/juiceapp/purchase/')
+
+        self.assertEqual(response.status_code, 200)
