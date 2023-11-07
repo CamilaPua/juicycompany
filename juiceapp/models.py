@@ -10,7 +10,6 @@ class Juice(models.Model):
 
 class Sale(models.Model):
     client = models.ForeignKey(User, on_delete=models.CASCADE)
-    juice = models.ForeignKey(Juice, on_delete=models.CASCADE)
     date = models.DateField(auto_now=True)
 
 class SaleItem(models.Model):

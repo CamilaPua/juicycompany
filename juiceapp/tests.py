@@ -1,5 +1,5 @@
 from django.test import TestCase, Client
-from .models import User
+from .models import *
 
 class PurchaseViewTest(TestCase):
 
@@ -18,3 +18,21 @@ class PurchaseViewTest(TestCase):
         self.client.logout()
         response = self.client.get('/juiceapp/purchase/')
         self.assertEqual(response.status_code, 302)
+
+    def test_append_juices(self):
+        
+        juice_data = [
+
+            {"name": "Jugo de naranja", "price": 5000},
+            {"name": "Jugo de manzana", "price": 4000},
+            {"name": "Jugo de piña", "price": 6000},
+            
+            ]
+        
+        for data in juice_data:
+            jugo = Juice(**data)
+            jugo.save()
+
+        for juice_db, juice_data in zip(Juice.objects.all(), juice_data):
+            self.assertEqual(juice_db.name, juice_data["name"])
+            self.assertEqual(juice_db.price, juice_data["price"])

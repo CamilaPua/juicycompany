@@ -21,6 +21,6 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('', include('juiceapp.urls')),
-    path('juiceapp/', include('juiceapp.urls'))
+    path('juiceapp/', include('juiceapp.urls')),
 
 ]
