@@ -3,10 +3,6 @@
 {% block content %}
 
   <h2>Juices available:</h2>
-  <ul>
-    {% for juice in juice_list %}
-      <li>{{ juice.name }} - Price: ${{ juice.price }}</li>
-    {% endfor %}
-  </ul>
+  {{ form }}
   
 {% endblock %}

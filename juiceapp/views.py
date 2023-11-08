@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import *
+from .forms import JuiceForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
@@ -11,7 +12,7 @@ def purchase(request):
 
         'user_id': user.id,
         'user_name': user.username,
-        'juice_list': Juice.objects.all()
+        'form': JuiceForm()
         
         }
     
