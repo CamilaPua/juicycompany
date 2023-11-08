@@ -6,6 +6,6 @@ urlpatterns = [
 
     path('', RedirectView.as_view(url='/juiceapp/')),
     path('juiceapp/',RedirectView.as_view(url='/juiceapp/purchase/')),
-    path('purchase/', views.purchase, name='purchase')
+    path('juiceapp/purchase/', views.purchase, name='purchase')
     
 ]
