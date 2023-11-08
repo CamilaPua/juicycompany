@@ -4,7 +4,8 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
 
-    path('juiceapp/purchase/', views.purchase, name='purchase'),
-    path('', RedirectView.as_view(url='/juiceapp/purchase/')),
-
+    path('', RedirectView.as_view(url='/juiceapp/')),
+    path('juiceapp/',RedirectView.as_view(url='/juiceapp/purchase/')),
+    path('purchase/', views.purchase, name='purchase')
+    
 ]

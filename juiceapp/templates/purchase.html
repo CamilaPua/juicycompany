@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>User Information</title>
-</head>
-<body>
-    <h1>User Information</h1>
-    <p>User ID: {{ user_id }}</p>
-    <p>User name: {{ user_name }}</p>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+
+  <h2>Juices available:</h2>
+  <ul>
+    {% for juice in juice_list %}
+      <li>{{ juice.name }} - Price: ${{ juice.price }}</li>
+    {% endfor %}
+  </ul>
+  
+{% endblock %}
