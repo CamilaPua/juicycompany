@@ -3,6 +3,21 @@
 {% block content %}
 
   <h2>Juices available:</h2>
-  {{ form }}
-  
+  <form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="number" name="quantity">
+    <button type="submit">Submit</button>
+  </form>
+
+  <h2>Sale Items:</h2>
+  <ul>
+    {% for sale_item in sale.saleitem_set.all %}
+    <li>{{ sale_item.juice.name }} - Quantity: {{ sale_item.quantity }}</li>
+    {% endfor %}
+  </ul>
+  <form action="{% url 'complete_purchase' %}" method="PUT">
+    {% csrf_token %}
+    <button type="submit">Complete Purchase</button>
+  </form>
 {% endblock %}

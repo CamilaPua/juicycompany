@@ -18,6 +18,8 @@ class PurchaseViewTest(TestCase):
         self.client.logout()
         response = self.client.get('/juiceapp/purchase/')
         self.assertEqual(response.status_code, 302)
+        url_in_test = response.url
+        self.assertEqual(url_in_test, "/juiceapp/login/?next=/juiceapp/purchase/")
 
     def test_append_juices(self):
         

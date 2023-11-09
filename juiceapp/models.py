@@ -11,6 +11,7 @@ class Juice(models.Model):
 class Sale(models.Model):
     client = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField(auto_now=True)
+    is_completed = models.BooleanField(default=False)
 
 class SaleItem(models.Model):
     sale = models.ForeignKey(Sale, on_delete=models.CASCADE)
