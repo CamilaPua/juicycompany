@@ -51,41 +51,41 @@ class Purchase(LoginRequiredMixin, View):
         
         return redirect('/juiceapp/purchase/')
 
-    def user_login(request):
-        if request.method == 'POST':
-            username = request.POST.get('username')
-            password = request.POST.get('password')
-        
-            user = authenticate(username=username, password=password)
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+    
+        user = authenticate(username=username, password=password)
 
-            if user:
-                if user.is_active:
-                    login(request, user)
-                    return redirect('/juiceapp/purchase/')
-                else:
-                    return HttpResponse('Your account is disabled.')
+        if user:
+            if user.is_active:
+                login(request, user)
+                return redirect('/juiceapp/purchase/')
             else:
-                print(f"Invalid login details:' {username}, {password}")
-                return HttpResponse('Invalid login details supplied')
+                return HttpResponse('Your account is disabled.')
         else:
-            return render(request, 'login.html')
+            print(f"Invalid login details:' {username}, {password}")
+            return HttpResponse('Invalid login details supplied')
+    else:
+        return render(request, 'login.html')
 
-    def register_user(request):
-        registered = False
-        
-        if request.method == 'POST':
-            user_form = UserForm(request.POST)
+def register_user(request):
+    registered = False
+    
+    if request.method == 'POST':
+        user_form = UserForm(request.POST)
 
-            if user_form.is_valid():
-                user = user_form.save()
-                user.set_password(user.password)
-                user.save()
-                registered = True
-            else:
-                print(user_form.errors)
+        if user_form.is_valid():
+            user = user_form.save()
+            user.set_password(user.password)
+            user.save()
+            registered = True
         else:
-            user_form = UserForm()
+            print(user_form.errors)
+    else:
+        user_form = UserForm()
 
-        return render(request, 'register.html',
-                      context={'user_form': user_form,
-                               'registered': registered})
+    return render(request, 'register.html',
+                    context={'user_form': user_form,
+                            'registered': registered})
