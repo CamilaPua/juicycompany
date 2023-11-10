@@ -1,10 +1,9 @@
-from django.shortcuts import render, redirect, reverse, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse
 from juiceapp.models import *
 from juiceapp.forms import JuiceForm, UserForm
-from django.contrib.auth.decorators import login_required
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 class Purchase(LoginRequiredMixin, View):
     def get(self, request):
@@ -89,3 +88,7 @@ def register_user(request):
     return render(request, 'register.html',
                     context={'user_form': user_form,
                             'registered': registered})
+
+def user_logout(request):
+    logout(request)
+    return redirect('/juiceapp/login/')

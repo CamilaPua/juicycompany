@@ -12,4 +12,5 @@ urlpatterns = [
     path('juiceapp/purchase/complete_purchase/', views.Purchase.complete_purchase, name='complete_purchase'),
     path('juiceapp/login/', views.user_login, name='user_login'),
     path('juiceapp/register/', views.register_user, name='register_login'),
+    path('juiceapp/logout/', views.user_logout, name='logout'),
 ]
