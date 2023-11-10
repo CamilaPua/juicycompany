@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse
-from .models import *
-from .forms import JuiceForm
+from juiceapp.models import *
+from juiceapp.forms import JuiceForm, UserForm
 from django.contrib.auth.decorators import login_required
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login
 
 class Purchase(LoginRequiredMixin, View):
-
     def get(self, request):
         user = request.user
         sale = Sale.objects.filter(client=user, is_completed=False).last()
@@ -62,7 +61,7 @@ class Purchase(LoginRequiredMixin, View):
             if user:
                 if user.is_active:
                     login(request, user)
-                    return render(request, 'purchase.html')
+                    return redirect('/juiceapp/purchase/')
                 else:
                     return HttpResponse('Your account is disabled.')
             else:
@@ -70,3 +69,23 @@ class Purchase(LoginRequiredMixin, View):
                 return HttpResponse('Invalid login details supplied')
         else:
             return render(request, 'login.html')
+
+    def register_user(request):
+        registered = False
+        
+        if request.method == 'POST':
+            user_form = UserForm(request.POST)
+
+            if user_form.is_valid():
+                user = user_form.save()
+                user.set_password(user.password)
+                user.save()
+                registered = True
+            else:
+                print(user_form.errors)
+        else:
+            user_form = UserForm()
+
+        return render(request, 'register.html',
+                      context={'user_form': user_form,
+                               'registered': registered})
