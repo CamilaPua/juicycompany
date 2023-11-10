@@ -16,7 +16,7 @@
     <li>{{ sale_item.juice.name }} - Quantity: {{ sale_item.quantity }}</li>
     {% endfor %}
   </ul>
-  <form action="{% url 'complete_purchase' %}" method="PUT">
+  <form action="{% url 'juiceapp:complete_purchase' %}" method="PUT">
     {% csrf_token %}
     <button type="submit">Complete Purchase</button>
   </form>

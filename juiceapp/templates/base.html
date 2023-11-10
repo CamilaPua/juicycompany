@@ -4,10 +4,16 @@
     <title>Juicy Company</title>
 </head>
 <body>
+    {% if user.is_authenticated %}
+        <header>
+            <h1>User Information</h1>
+        <span>User ID: {{ user.id }}, </span><span>User name: {{ user.username }}, </span><span>Sale id: {{ sale.id }}</span>
+        </header>
+    {% else %}
     <header>
-        <h1>User Information</h1>
-    <span>User ID: {{ user_id }}, </span><span>User name: {{ user_name }}, </span><span>Sale id: {{ sale.id }}</span>
-    </header>
+        <h3>Test User</h3><span>User name: usertest, </span><span>Password:</span>
+        </header>
+    {% endif %}
     <main>
         {% block content %}
         {% endblock %}

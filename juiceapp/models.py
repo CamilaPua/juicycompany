@@ -17,4 +17,3 @@ class SaleItem(models.Model):
     sale = models.ForeignKey(Sale, on_delete=models.CASCADE)
     juice = models.ForeignKey(Juice, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
-
