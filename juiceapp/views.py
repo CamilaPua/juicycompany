@@ -4,6 +4,7 @@ from juiceapp.forms import JuiceForm, UserForm
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
+from django.views.generic import ListView
 
 class Purchase(LoginRequiredMixin, View):
     def get(self, request):
@@ -92,3 +93,9 @@ def register_user(request):
 def user_logout(request):
     logout(request)
     return redirect('/juiceapp/login/')
+
+class BillsListView(ListView):
+    template_name = "bills.html"
+
+    def get_queryset(self):
+        return Sale.objects.filter(client=self.request.user)

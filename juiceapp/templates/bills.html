@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<a href="/juiceapp/purchase">Comprar</a>
+  <h2>Your Bills</h2>
+
+  {% if object_list %}
+    <ul>
+      {% for bill in object_list %}
+        <li>
+          <strong>Bill ID:</strong> {{ bill.id }}<br>
+          <strong>Date:</strong> {{ bill.date }}<br>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No bills available.</p>
+  {% endif %}
+{% endblock %}
