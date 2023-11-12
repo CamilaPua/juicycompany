@@ -1,4 +1,3 @@
-```markdown
 # Proyecto Django JuicyCompany
 
 Este proyecto tiene como objetivo implementar las mejores prácticas de desarrollo utilizando Django y el ORM de Django.
