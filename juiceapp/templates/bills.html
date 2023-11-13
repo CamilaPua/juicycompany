@@ -2,7 +2,6 @@
 
 {% block content %}
 
-<a href="/juiceapp/purchase">Comprar</a>
   <h2>Your Bills</h2>
 
   {% if object_list %}
@@ -17,4 +16,8 @@
   {% else %}
     <p>No bills available.</p>
   {% endif %}
+{% endblock %}
+{% block footer %}
+  <a href="/juiceapp/purchase">Comprar</a>
+  {{ block.super }}
 {% endblock %}

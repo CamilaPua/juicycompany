@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-<a href="/juiceapp/bills">Compras realizadas</a>
   <h2>Juices available:</h2>
   <form method="POST">
     {% csrf_token %}
@@ -20,4 +19,8 @@
     {% csrf_token %}
     <button type="submit">Complete Purchase</button>
   </form>
+{% endblock %}
+{% block footer %}
+  <a href="/juiceapp/bills">Compras realizadas</a>
+  {{ block.super }}
 {% endblock %}
