@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from juiceapp.models import *
 from juiceapp.forms import JuiceForm, UserForm
 from django.views import View
@@ -99,3 +99,13 @@ class BillsListView(ListView):
 
     def get_queryset(self):
         return Sale.objects.filter(client=self.request.user)
+
+def bill_detail(request, sale_id):
+    sale = get_object_or_404(Sale, id=sale_id)
+    items = SaleItem.objects.filter(sale=sale)
+    subtotals = list()
+    for item in items:
+        subtotals.append(item.juice.price * item.quantity)
+    return render(request, 'bill.html', {'bill': sale, 'items': items,
+                                         'subtotals': subtotals,
+                                         'total': sum(subtotals)})

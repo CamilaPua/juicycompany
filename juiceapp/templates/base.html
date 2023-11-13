@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Juicy Company</title>
-    <style>
-        /* Estilo para el footer */
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-        }
-        /* Estilo para los enlaces en el footer */
-        footer a {
-            color: #fff;
-            text-decoration: none;
-            margin: 10px;
-        }
-    </style>
-</head>
+    <head>
+        <title>Juicy Company</title>
+        {% block styles %}
+        <style>
+            /* Estilo para el footer */
+            footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                background-color: #333;
+                color: #fff;
+                text-align: center;
+                padding: 10px;
+            }
+            /* Estilo para los enlaces en el footer */
+            footer a {
+                color: #fff;
+                text-decoration: none;
+                margin: 10px;
+            }
+        </style>
+        {% endblock %}
+    </head>
 <body>
     {% if user.is_authenticated %}
         <header>

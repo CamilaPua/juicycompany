@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    {{block.super}}
+    <style>
+        /* Estilo para la tabla hecho por chat gpt*/
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    
+        /* Estilo para las celdas de datos (td) */
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+    
+        /* Estilo para las celdas de encabezado (th) */
+        th {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+            background-color: #333; /* Fondo oscuro */
+            color: #fff; /* Texto blanco */
+            font-weight: bold; /* Texto en negrita */
+        }
+        /* Estilo para el footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* Estilo para los enlaces en el footer */
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 10px;
+        }
+    </style>    
+{% endblock %}
+
+{% block content %}
+  <h2>Bill Details</h2>
+
+  <strong>Bill ID:</strong> {{ bill.id }}<br>
+  <strong>Date:</strong> {{ bill.date }}<br>
+  <strong>Total:</strong> {{ total }}<br>
+
+  <h3>Purchased Items:</h3>
+  {% if items %}
+    <table>
+        <tr>
+            <th>Quantity</th>
+            <th>Flavor</th>
+            <th>Juice price</th>
+        </tr>
+        {% for item in items %}
+            <tr>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.juice }}</td>
+                <td>{{ item.juice.price }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+  {% else %}
+    <p>No purchased items available.</p>
+  {% endif %}
+{% endblock %}
+{% block footer %}
+  <a href="/juiceapp/bills">Other purchases</a>
+  <a href="/juiceapp/purchase">Buy</a>
+  {{ block.super }}
+{% endblock %}

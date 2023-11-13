@@ -13,5 +13,6 @@ urlpatterns = [
     path('juiceapp/login/', views.user_login, name='user_login'),
     path('juiceapp/register/', views.register_user, name='register_login'),
     path('juiceapp/logout/', views.user_logout, name='logout'),
-    path('juiceapp/bills/', views.BillsListView.as_view(), name='bills')
+    path('juiceapp/bills/', views.BillsListView.as_view(), name='bills'),
+    path('juiceapp/bills/bill<int:sale_id>/', views.bill_detail, name='bill_detail'),
 ]

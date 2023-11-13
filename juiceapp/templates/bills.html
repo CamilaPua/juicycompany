@@ -8,8 +8,10 @@
     <ul>
       {% for bill in object_list %}
         <li>
-          <strong>Bill ID:</strong> {{ bill.id }}<br>
-          <strong>Date:</strong> {{ bill.date }}<br>
+          <a href="{% url 'juiceapp:bill_detail' bill.id %}">
+            <strong>Bill ID:</strong> {{ bill.id }}<br>
+            <strong>Date:</strong> {{ bill.date }}<br>
+          </a>
         </li>
       {% endfor %}
     </ul>
