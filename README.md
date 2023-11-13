@@ -54,5 +54,3 @@ python manage.py runserver # si estás en la carpeta juicycompany
 
 Una vez que el proyecto esté en ejecución, abre tu navegador y accede a la aplicación en http://localhost:8000.
 ```
-
-Recuerda ajustar cualquier detalle adicional según la estructura específica de tu proyecto "JuicyCompany".
