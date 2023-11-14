@@ -98,7 +98,7 @@ class BillsListView(ListView):
     template_name = "bills.html"
 
     def get_queryset(self):
-        return Sale.objects.filter(client=self.request.user)
+        return Sale.objects.filter(client=self.request.user).filter(is_completed=True)
 
 def bill_detail(request, sale_id):
     sale = get_object_or_404(Sale, id=sale_id)
@@ -106,6 +106,9 @@ def bill_detail(request, sale_id):
     subtotals = list()
     for item in items:
         subtotals.append(item.juice.price * item.quantity)
-    return render(request, 'bill.html', {'bill': sale, 'items': items,
-                                         'subtotals': subtotals,
-                                         'total': sum(subtotals)})
+    return render(request, 'bill.html', {
+        'bill': sale,
+        'items': items,
+        'subtotals': subtotals,
+        'total': sum(subtotals)
+        })
